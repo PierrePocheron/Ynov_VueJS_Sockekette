@@ -65,6 +65,22 @@ const toggleMenu = () => {
   align-items: center;
   position: relative;
 
+  &.opened {
+    .nav__list {
+      opacity: 1;
+      visibility: visible;
+      transform: scaleY(1);
+      transition: all 0.25s ease-in;
+
+      &--submenu {
+        @media (min-width: 768px) {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
   &__list {
     position: absolute;
     display: flex;
@@ -76,11 +92,11 @@ const toggleMenu = () => {
     width: 100%;
     background-color: var(--clr-white);
     padding: 2rem;
-    max-height: 0;
-    transition: max-height 0.25s ease-in, opacity 0.25s;
     opacity: 0;
     visibility: hidden;
-    overflow: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.25s ease-in;
 
     @media (min-width: 768px) {
       position: unset;
@@ -89,7 +105,7 @@ const toggleMenu = () => {
       background-color: transparent;
       opacity: 1;
       visibility: visible;
-      max-height: fit-content;
+      transform: scaleY(1);
     }
 
     &--submenu {
@@ -104,7 +120,9 @@ const toggleMenu = () => {
         left: 0;
         flex-direction: column;
         row-gap: 1.5rem;
-        box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.22);
+        box-shadow: 5px 5px 1rem 5px rgba(0, 0, 0, 0.2);
+        width: 150%;
+        background-color: white;
       }
     }
   }
@@ -116,10 +134,12 @@ const toggleMenu = () => {
     @media (min-width: 768px) {
       &:hover {
         background-color: var(--clr-light-grey);
-        .nav__list--submenu {
-          opacity: 1;
-          visibility: visible;
-          pointer-events: all;
+        .nav {
+          &__list--submenu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+          }
         }
       }
     }
@@ -130,15 +150,6 @@ const toggleMenu = () => {
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
-
-  &.opened {
-    .nav__list {
-      opacity: 1;
-      visibility: visible;
-      max-height: fit-content;
-      transition: max-height 0.25s ease-in, opacity 0.25s;
-    }
   }
 }
 </style>

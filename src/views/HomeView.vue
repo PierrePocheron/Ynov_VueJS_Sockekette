@@ -1,7 +1,23 @@
 <template>
-  <div>WHOUHOU</div>
+  <div class="container">
+    <AppHero />
+  </div>
+  <AppSlider
+    :slides="[
+      '/images/nike.png',
+      '/images/adidas.svg',
+      '/images/chanel.svg',
+      '/images/hm.svg',
+      '/images/rebook.svg',
+      '/images/coq.svg',
+      '/images/puma.svg',
+    ]"
+  />
 </template>
 
-<script setup></script>
+<script setup>
+import AppHero from "@/components/03 - Organismes/AppHero.vue";
+import AppSlider from "../components/03 - Organismes/AppSlider.vue";
+</script>
 
 <style lang="scss" scoped></style>
