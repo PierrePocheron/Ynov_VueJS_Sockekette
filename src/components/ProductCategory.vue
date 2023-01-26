@@ -1,9 +1,8 @@
 <script setup>
+import CartItemQuantity from "@/components/CartItemQuantity.vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slugify } from "@/utils/slugify";
-import { onMounted, ref, watch } from "vue";
-import CartItemQuantity from "@/components/CartItemQuantity.vue";
-import { useCartStore } from "@/stores/cart";
 import { formatNumberToPrice } from "@/utils/formatNumber";
 
 const categories = [
@@ -13,7 +12,6 @@ const categories = [
   { label: "women's clothing", slug: slugify("women's clothing") },
 ];
 
-const cartStore = useCartStore();
 const route = useRoute();
 const isValidCategory = ref(false);
 const currentCategory = ref(null);
@@ -38,9 +36,7 @@ async function loadProductsByCategory() {
   }
 }
 
-watch(route, (to) => {
-  loadProductsByCategory();
-});
+watch(route, () => loadProductsByCategory());
 </script>
 
 <template>
