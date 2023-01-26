@@ -13,6 +13,11 @@ const router = createRouter({
       name: "payment",
       component: () => import("@/views/AppPayment.vue"),
     },
+    {
+      path: "/produits/categories/:category",
+      name: "products-category",
+      component: () => import("@/components/ProductCategory.vue"),
+    },
   ],
 });
 
