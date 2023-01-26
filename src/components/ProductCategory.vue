@@ -1,10 +1,10 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { slugify } from "@/utils/slugify";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import CartItemQuantity from "@/components/CartItemQuantity.vue";
 import { useCartStore } from "@/stores/cart";
-import { formatNumberToPrice } from "../utils/formatNumber";
+import { formatNumberToPrice } from "@/utils/formatNumber";
 
 const categories = [
   { label: "electronics", slug: "electronics" },
@@ -37,6 +37,10 @@ async function loadProductsByCategory() {
     products.value = [...json];
   }
 }
+
+watch(route, (to) => {
+  loadProductsByCategory();
+});
 </script>
 
 <template>
