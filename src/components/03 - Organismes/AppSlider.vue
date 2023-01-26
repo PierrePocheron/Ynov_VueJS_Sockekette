@@ -28,17 +28,19 @@ const props = defineProps({
   padding: 3rem 0;
   margin-top: 10rem;
   width: 100%;
+  overflow: hidden;
 
   &__track {
     animation: scroll 40s linear infinite;
     display: flex;
     flex-wrap: nowrap;
-    gap: 3rem;
+    gap: 5rem;
   }
 
   &__item {
     img {
       object-fit: contain;
+      display: block;
     }
   }
 }

@@ -9,10 +9,10 @@ const router = createRouter({
       name: "Home",
       component: HomeView,
     },
-    {      
+    {
       path: "/panier",
       name: "cart",
-      component: () => import("@/components/CartProduct.vue"),
+      component: () => import("@/views/CartProduct.vue"),
     },
     {
       path: "/paiement",
@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: "/produits/categories/:category",
       name: "products-category",
-      component: () => import("@/components/ProductCategory.vue"),
+      component: () => import("@/views/ProductCategory.vue"),
     },
   ],
 });
