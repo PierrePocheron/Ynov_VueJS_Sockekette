@@ -1,4 +1,6 @@
-# 🚀 Ynov VueJS Proejct Shopping
+# 🚀 Ynov VueJS Project Shopping
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e5388c0b-d7bb-4275-a5b4-ca406cc6bb2f/deploy-status)](https://vuejs-project-shopping.netlify.app/)
 
 ## 🧑🏽‍💻 `Developpement Context`
 
@@ -7,6 +9,10 @@
 - Nathanaël Allard
 - Hugo Denis
 - Pierre Pocheron
+
+### _Project management :_
+
+- Github Project
 
 #
 
