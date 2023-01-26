@@ -1,8 +1,8 @@
-# 🚀 The Sockekette - Ynov VueJS Project Shopping
+# 🚀 Sockekette - Ynov VueJS Project Shopping
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e5388c0b-d7bb-4275-a5b4-ca406cc6bb2f/deploy-status)](https://vuejs-project-shopping.netlify.app/)
 
-The **_Sockekette_** is an e-commerce website.
+**_Sockekette_** is an e-commerce website.
 The features are as follows: [features](#🧱-features)
 
 This project aims to validate our VueJS elective.
@@ -54,6 +54,9 @@ This project aims to validate our VueJS elective.
 - Web app
 - VueJS
 - Vite
+- Vue Router
+- Pinia
+- [Fake Store API](https://fakestoreapi.com/)
 
 #
 
