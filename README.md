@@ -1,16 +1,48 @@
-# projet-shopping
+# 🚀 Ynov VueJS Proejct Shopping
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🧑🏽‍💻 `Developpement Context`
 
-## Recommended IDE Setup
+### _Team :_
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Nathanaël Allard
+- Hugo Denis
+- Pierre Pocheron
 
-## Customize configuration
+#
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 🧱 `Features`
 
-## Project Setup
+### ⚓️ `Module Menu`
+
+- Navigation menu
+
+### 📦 `Module Catalogue`
+
+- Display list of products
+- Sort the list of product
+- Search a product in the list
+
+### 👕 `Module Product`
+
+- Display product informations
+
+### 🛒 `Module Cart`
+
+- Display product in cart
+
+#
+
+## 🏛️ `Technology used`
+
+- Web app
+- VueJS
+- Vite
+
+#
+
+## 🏗️ `Getting started`
+
+### install all dependencies
 
 ```sh
 npm install
