@@ -9,14 +9,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-<<<<<<< Updated upstream
     "pinia": "^2.0.29",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
-=======
-    "sass": "^1.57.1",
-    "vue": "^3.2.45"
->>>>>>> Stashed changes
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
