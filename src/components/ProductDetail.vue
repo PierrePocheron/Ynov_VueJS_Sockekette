@@ -1,9 +1,16 @@
 <template>
   <div class="product">
-    <!-- <div class="product-img">
-      <img v-if="product.image" :src="product.image" :alt="product.name" />
+    <routerLink
+      :to="{
+        name: 'products',
+      }"
+    >
+      Retour
+    </routerLink>
+    <div class="product-img">
+      <img v-if="product.image" :src="product.image" :alt="product.title" />
       <IconProduct v-else />
-    </div> -->
+    </div>
     <div class="product-label">
       {{ product.title }}
     </div>
