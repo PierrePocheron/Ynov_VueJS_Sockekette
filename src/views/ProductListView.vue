@@ -2,13 +2,11 @@
   <div>
     <h1>Products</h1>
     <div v-if="isLoading">Loading ...</div>
-    <div v-else class="productList">
-      <ProductItem
-        v-for="product in products"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
+    <ul v-else class="productList">
+      <li v-for="product in products" :key="product.id">
+        <ProductItem :product="product" />
+      </li>
+    </ul>
   </div>
 </template>
 
