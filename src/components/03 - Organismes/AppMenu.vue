@@ -9,7 +9,7 @@
     </div>
     <ul class="nav__list">
       <li class="nav__item">
-        <AppRouterLink to="/produits">
+        <AppRouterLink to="/products">
           <template #default>Tous les produits</template>
         </AppRouterLink>
       </li>
@@ -21,7 +21,7 @@
             v-for="category in categories"
             :key="category.slug"
           >
-            <AppRouterLink :to="`/produits/categories/${category.slug}`">
+            <AppRouterLink :to="`/products/categories/${category.slug}`">
               <template #default>
                 {{ category.label }}
               </template>
@@ -30,7 +30,7 @@
         </ul>
       </li>
       <li class="nav__item">
-        <AppRouterLink to="/panier">
+        <AppRouterLink to="/cart">
           <template #default>Mon panier</template>
         </AppRouterLink>
       </li>

@@ -10,35 +10,29 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/panier",
+      path: "/cart",
       name: "cart",
       component: () => import("@/views/CartProduct.vue"),
     },
     {
-      path: "/paiement",
+      path: "/payment",
       name: "payment",
       component: () => import("@/views/AppPayment.vue"),
     },
     {
-      path: "/produits/categories/:category",
+      path: "/products/categories/:category",
       name: "products-category",
       component: () => import("@/views/ProductCategory.vue"),
     },
     {
-      path: "/produits",
-      name: "product",
-      component: () => import("@/views/ProductView.vue"),
-      // children: [
-      //   {
-      //     path: ":tag",
-      //     name: "category",
-      //     component: CategoryView,
-      //     props: (route) => ({
-      //       productId: route.params.tag,
-      //       limit: route.query.limit || undefined,
-      //     }),
-      //   },
-      // ],
+      path: "/products",
+      name: "products",
+      component: () => import("@/views/ProductListView.vue"),
+    },
+    {
+      path: "/products/:id",
+      name: "products-detail",
+      component: () => import("@/views/ProductDetailView.vue"),
     },
   ],
 });
