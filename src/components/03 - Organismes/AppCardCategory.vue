@@ -19,11 +19,11 @@
         <router-link to="/">
           <div class="categories__info">
             <AppHeading tag="h4" level="secondary" class="clr--white">
-              {{ category.name }}
+              {{ category.label }}
             </AppHeading>
           </div>
           <div class="categories__img">
-            <img :src="category.image" :alt="category.name" />
+            <img :src="category.image" :alt="category.label" />
           </div>
         </router-link>
       </div>

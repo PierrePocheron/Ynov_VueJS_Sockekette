@@ -14,7 +14,7 @@
         </AppRouterLink>
       </li>
       <li class="nav__item" v-if="categories.length > 0">
-        <span>Categories</span>
+        <span class="nav__title">Categories</span>
         <ul class="nav__list nav__list--submenu">
           <li
             class="nav__item nav__item--subitem"
@@ -51,7 +51,6 @@ const isOpen = ref(false);
 
 onMounted(async () => {
   categories.value = await getCategories();
-  console.log(categories.value.length);
 });
 
 const toggleMenu = () => {
@@ -80,6 +79,13 @@ const toggleMenu = () => {
         }
       }
     }
+  }
+
+  &__title {
+    color: var(--clr-dark-grey);
+    text-decoration: none;
+    font-size: var(--font-size-s);
+    font-family: var(--font-family-primary);
   }
 
   &__list {

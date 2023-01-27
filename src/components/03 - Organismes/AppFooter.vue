@@ -21,7 +21,7 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.name }}</router-link>
+            <router-link to="/">{{ category.label }}</router-link>
           </li>
         </ul>
       </div>
@@ -32,7 +32,7 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.name }}</router-link>
+            <router-link to="/">{{ category.label }}</router-link>
           </li>
         </ul>
       </div>
@@ -43,7 +43,7 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.name }}</router-link>
+            <router-link to="/">{{ category.label }}</router-link>
           </li>
         </ul>
       </div>
@@ -54,7 +54,7 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.name }}</router-link>
+            <router-link to="/">{{ category.label }}</router-link>
           </li>
         </ul>
       </div>

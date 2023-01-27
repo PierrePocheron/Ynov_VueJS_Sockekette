@@ -8,7 +8,7 @@ export const getCategories = async () => {
     categories.push({
       label,
       id: crypto.randomUUID(),
-      slug: slugify(categoriesName[index]),
+      slug: slugify(label),
       image:
         "https://www.lahalle.com/on/demandware.static/-/Sites-lahalle_master/default/dw49f86cb0/sweat-a-capuche-hoodie-vert-olive-homme-b-36165600613111097.jpg",
     });
