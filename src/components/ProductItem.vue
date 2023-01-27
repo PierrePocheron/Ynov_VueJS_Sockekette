@@ -13,6 +13,15 @@
 
     <CartItemQuantity :item="product" />
 
+    <routerLink
+      :to="{
+        name: 'products-detail',
+        params: { id: product.id },
+      }"
+    >
+      Details
+    </routerLink>
+
     <br />
   </div>
 </template>
@@ -20,8 +29,7 @@
 <script setup>
 import { computed } from "vue";
 import CartItemQuantity from "@/components/CartItemQuantity.vue";
-
-// import IconProduct from "@/components/IconProduct.vue";
+import IconProduct from "@/components/icons/IconProduct.vue";
 
 const props = defineProps({
   product: {

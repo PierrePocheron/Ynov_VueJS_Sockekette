@@ -1,11 +1,11 @@
 <template>
   <div class="product">
-    <div class="product-img">
+    <!-- <div class="product-img">
       <img v-if="product.image" :src="product.image" :alt="product.name" />
       <IconProduct v-else />
-    </div>
+    </div> -->
     <div class="product-label">
-      {{ product.name }}
+      {{ product.title }}
     </div>
     <p>{{ product.price }}</p>
     <p>{{ product.grade }}</p>
@@ -13,16 +13,14 @@
     <p>{{ product.category }}</p>
     <p>{{ product.rating.rate }}</p>
     <p>{{ product.rating.count }}</p>
-    <div>
-      <IconCart />
-      <a>Add to cart</a>
-    </div>
+
+    <CartItemQuantity :item="product" />
   </div>
 </template>
 
 <script setup>
-import IconProduct from "@/components/IconProduct.vue";
-import IconCart from "@/components/IconCart.vue";
+// import IconProduct from "@/components/icons/IconProduct.vue";
+import CartItemQuantity from "@/components/CartItemQuantity.vue";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -34,6 +32,3 @@ const props = defineProps({
 
 const product = computed(() => props.product);
 </script>
-
-<style scoped>
-</style>
