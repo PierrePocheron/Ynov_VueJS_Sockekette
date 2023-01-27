@@ -30,7 +30,7 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import ProductItem from "@/components/ProductItem.vue";
+import ProductItem from "@/components/03 - Organismes/ProductItem.vue";
 
 const products = ref([]);
 const isLoading = ref(false);

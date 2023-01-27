@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from "vue";
-import ProductDetail from "@/components/ProductDetail.vue";
+import ProductDetail from "@/components/03 - Organismes/ProductDetail.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 
