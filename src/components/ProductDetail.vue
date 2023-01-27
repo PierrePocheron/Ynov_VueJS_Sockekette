@@ -17,7 +17,16 @@
     <p>{{ product.price }}</p>
     <p>{{ product.grade }}</p>
     <p>{{ product.description }}</p>
-    <p>{{ product.category }}</p>
+
+    <routerLink
+      :to="{
+        name: 'products-category',
+        params: { category: product.category },
+      }"
+    >
+      {{ product.category }}
+    </routerLink>
+
     <p>{{ product.rating.rate }}</p>
     <p>{{ product.rating.count }}</p>
 
