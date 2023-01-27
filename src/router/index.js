@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: "/cart",
       name: "cart",
-      component: () => import("@/components/CartProduct.vue"),
+      component: () => import("@/views/CartProduct.vue"),
     },
     {
       path: "/payment",
@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: "/products/categories/:category",
       name: "products-category",
-      component: () => import("@/components/ProductCategory.vue"),
+      component: () => import("@/views/ProductCategory.vue"),
     },
     {
       path: "/products",

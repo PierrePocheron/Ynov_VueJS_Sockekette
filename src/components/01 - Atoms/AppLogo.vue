@@ -11,6 +11,13 @@
 
 <style lang="scss" scoped>
 .logo {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
   &__img {
     width: 5rem;
   }
