@@ -28,7 +28,7 @@
 
 <script setup>
 import { computed } from "vue";
-import CartItemQuantity from "@/components/CartItemQuantity.vue";
+import CartItemQuantity from "@/components/02 - Molecules/CartItemQuantity.vue";
 import IconProduct from "@/components/icons/IconProduct.vue";
 
 const props = defineProps({

@@ -1,5 +1,5 @@
 <script setup>
-import CartItemQuantity from "@/components/CartItemQuantity.vue";
+import CartItemQuantity from "@/components//02 - Molecules/CartItemQuantity.vue";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slugify } from "@/utils/slugify";
