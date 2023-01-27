@@ -21,9 +21,9 @@
               <li
                 class="nav__item nav__item--subitem"
                 v-for="categorie in categories"
-                :key="categorie"
+                :key="categorie.id"
               >
-                {{ categorie }}
+                {{ categorie.name }}
               </li>
             </ul>
           </template>

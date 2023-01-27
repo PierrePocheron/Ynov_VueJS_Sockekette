@@ -1,11 +1,15 @@
 export const getCategories = async () => {
   const res = await fetch("https://fakestoreapi.com/products/categories");
-  const categories = [...(await res.json())];
-  categories.forEach((c) => {
-    c.id = crypto.randomUUID;
-    c.image = "/hoodie.jpeg";
+  const categoriesName = await res.json();
+  const categories = [];
+  categoriesName.forEach((name) => {
+    categories.push({
+      name,
+      id: crypto.randomUUID(),
+      image: "/hoodie.jpeg",
+    });
   });
-  return await res.json();
+  return await categories;
 };
 
 export const getProducts = async () => {
