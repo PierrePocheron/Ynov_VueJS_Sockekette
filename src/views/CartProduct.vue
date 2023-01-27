@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted } from "vue";
 import { useCartStore } from "@/stores/cart";
-import CartItemQuantity from "@/components/CartItemQuantity.vue";
+import CartItemQuantity from "@/components/02 - Molecules/CartItemQuantity.vue";
 import { formatNumberToPrice } from "@/utils/formatNumber";
 import { useRouter } from "vue-router";
+import { getProducts } from "../services/AppProductService";
 
 const cartStore = useCartStore();
 const router = useRouter();
@@ -11,13 +12,7 @@ const router = useRouter();
 onMounted(loadProducts);
 
 async function loadProducts() {
-  const res = await fetch("https://fakestoreapi.com/products?limit=5");
-  const json = await res.json();
-  const products = [...json];
-  products.forEach((p) => {
-    p.quantity = 1;
-    p.amount = p.price;
-  });
+  const products = await getProducts();
   cartStore.loadProductsInStore(products);
 }
 

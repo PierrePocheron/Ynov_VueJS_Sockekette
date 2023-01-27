@@ -3,6 +3,9 @@
   --clr-primary: #00937b;
   --clr-secondary: #bbdee8;
 
+  --clr-primary-50: rgba(0, 147, 123, 0.5);
+  --clr-secondary-50: rgba(187, 222, 232, 0.5);
+
   --clr-white: #f8faff;
   --clr-dark: #333333;
 
@@ -31,6 +34,7 @@
 
 html {
   font-size: 62.5%;
+  font-family: var(--font-family-primary);
 }
 
 body {
@@ -41,4 +45,41 @@ body {
   width: 90vw;
   max-width: 140rem;
   margin: 0 auto;
+}
+
+.clr--primary {
+  color: var(--clr-primary);
+}
+
+.clr--secondary {
+  color: var(--clr-secondary);
+}
+
+.clr--white {
+  color: var(--clr-white);
+}
+
+.fnt--bold {
+  font-weight: 700;
+}
+
+.fnt--medium {
+  font-weight: 500;
+}
+
+.fnt--light {
+  font-weight: 400;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+::selection {
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
 }
