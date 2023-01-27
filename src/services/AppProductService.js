@@ -1,11 +1,14 @@
+import { slugify } from "@/utils/slugify";
+
 export const getCategories = async () => {
   const res = await fetch("https://fakestoreapi.com/products/categories");
   const categoriesName = await res.json();
   const categories = [];
-  categoriesName.forEach((name) => {
+  categoriesName.forEach((label) => {
     categories.push({
-      name,
+      label,
       id: crypto.randomUUID(),
+      slug: slugify(categoriesName[index]),
       image:
         "https://www.lahalle.com/on/demandware.static/-/Sites-lahalle_master/default/dw49f86cb0/sweat-a-capuche-hoodie-vert-olive-homme-b-36165600613111097.jpg",
     });

@@ -9,28 +9,28 @@
     </div>
     <ul class="nav__list">
       <li class="nav__item">
-        <AppRouterLink to="/">
+        <AppRouterLink to="/produits">
           <template #default>Tous les produits</template>
         </AppRouterLink>
       </li>
       <li class="nav__item" v-if="categories.length > 0">
-        <AppRouterLink to="/">
-          <template #default>
-            <span>Categories</span>
-            <ul class="nav__list nav__list--submenu">
-              <li
-                class="nav__item nav__item--subitem"
-                v-for="categorie in categories"
-                :key="categorie.id"
-              >
-                {{ categorie.name }}
-              </li>
-            </ul>
-          </template>
-        </AppRouterLink>
+        <span>Categories</span>
+        <ul class="nav__list nav__list--submenu">
+          <li
+            class="nav__item nav__item--subitem"
+            v-for="category in categories"
+            :key="category.slug"
+          >
+            <AppRouterLink :to="`/produits/categories/${category.slug}`">
+              <template #default>
+                {{ category.label }}
+              </template>
+            </AppRouterLink>
+          </li>
+        </ul>
       </li>
       <li class="nav__item">
-        <AppRouterLink to="/">
+        <AppRouterLink to="/panier">
           <template #default>Mon panier</template>
         </AppRouterLink>
       </li>
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { getCategories } from "@/services/AppProductService.js";
 import AppRouterLink from "@/components/01 - Atoms/AppRouterLink.vue";
 import AppLogo from "@/components/01 - Atoms/AppLogo.vue";
@@ -49,8 +49,9 @@ import AppBurger from "@/components/01 - Atoms/AppBurger.vue";
 const categories = ref([]);
 const isOpen = ref(false);
 
-onBeforeMount(async () => {
+onMounted(async () => {
   categories.value = await getCategories();
+  console.log(categories.value.length);
 });
 
 const toggleMenu = () => {
@@ -134,12 +135,10 @@ const toggleMenu = () => {
     @media (min-width: 768px) {
       &:hover {
         background-color: var(--clr-light-grey);
-        .nav {
-          &__list--submenu {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: all;
-          }
+        .nav__list--submenu {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: all;
         }
       }
     }
