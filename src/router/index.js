@@ -17,6 +17,17 @@ const router = createRouter({
       path: "/products",
       name: "product",
       component: () => import("@/views/ProductView.vue"),
+      // children: [
+      //   {
+      //     path: ":tag",
+      //     name: "category",
+      //     component: CategoryView,
+      //     props: (route) => ({
+      //       productId: route.params.tag,
+      //       limit: route.query.limit || undefined,
+      //     }),
+      //   },
+      // ],
     },
   ],
 });

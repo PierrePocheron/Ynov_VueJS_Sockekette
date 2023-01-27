@@ -6,7 +6,6 @@
     <p>desc : {{ product.description }}</p>
     <p>rating count: {{ product.rating.count }}</p>
     <p>rating rate: {{ product.rating.rate }}</p>
-    <p>{{ product.title }}</p>
     <div class="product-img">
       <img v-if="product.image" :src="product.image" :alt="product.title" />
       <IconProduct v-else />
