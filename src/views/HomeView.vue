@@ -13,11 +13,13 @@
       '/images/puma.svg',
     ]"
   />
+  <AppCardCategory />
 </template>
 
 <script setup>
 import AppHero from "@/components/03 - Organismes/AppHero.vue";
-import AppSlider from "../components/03 - Organismes/AppSlider.vue";
+import AppSlider from "@/components/03 - Organismes/AppSlider.vue";
+import AppCardCategory from "@/components/03 - Organismes/AppCardCategory.vue";
 </script>
 
 <style lang="scss" scoped></style>

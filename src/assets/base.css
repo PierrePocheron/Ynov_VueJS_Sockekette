@@ -3,6 +3,9 @@
   --clr-primary: #00937b;
   --clr-secondary: #bbdee8;
 
+  --clr-primary-50: rgba(0, 147, 123, 0.5);
+  --clr-secondary-50: rgba(187, 222, 232, 0.5);
+
   --clr-white: #f8faff;
   --clr-dark: #333333;
 
@@ -50,6 +53,10 @@ body {
 
 .clr--secondary {
   color: var(--clr-secondary);
+}
+
+.clr--white {
+  color: var(--clr-white);
 }
 
 .fnt--bold {

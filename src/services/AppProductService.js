@@ -6,7 +6,8 @@ export const getCategories = async () => {
     categories.push({
       name,
       id: crypto.randomUUID(),
-      image: "/hoodie.jpeg",
+      image:
+        "https://www.lahalle.com/on/demandware.static/-/Sites-lahalle_master/default/dw49f86cb0/sweat-a-capuche-hoodie-vert-olive-homme-b-36165600613111097.jpg",
     });
   });
   return await categories;
