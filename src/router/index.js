@@ -23,6 +23,22 @@ const router = createRouter({
       path: "/produits/categories/:category",
       name: "products-category",
       component: () => import("@/components/ProductCategory.vue"),
+	},
+	{
+      path: "/products",
+      name: "product",
+      component: () => import("@/views/ProductView.vue"),
+      // children: [
+      //   {
+      //     path: ":tag",
+      //     name: "category",
+      //     component: CategoryView,
+      //     props: (route) => ({
+      //       productId: route.params.tag,
+      //       limit: route.query.limit || undefined,
+      //     }),
+      //   },
+      // ],
     },
   ],
 });
