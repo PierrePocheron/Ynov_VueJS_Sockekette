@@ -9,19 +9,19 @@
   --clr-white: #f8faff;
   --clr-dark: #333333;
 
-  --clr-light-grey: #dbdddd;
+  --clr-light-grey: #eee;
   --clr-dark-grey: #8f9298;
 
   --font-family-secondary: "Inter", sans-serif;
   --font-family-primary: "Poppins", sans-serif;
   --font-family-tertiary: "Noto Serif Gujarati", sans-serif;
 
-  --font-size-xs: 1rem;
-  --font-size-s: 1.8rem;
-  --font-size-md: 2rem;
-  --font-size-l: 2.6rem;
-  --font-size-xl: 5.5rem;
-  --font-size-xxl: 8.5rem;
+  --font-size-xs: 1.5rem;
+  --font-size-s: clamp(1.25rem, 2vw, 1.8rem);
+  --font-size-md: clamp(1.75rem, 4vw, 2rem);
+  --font-size-l: clamp(2rem, 6vw, 2.5rem);
+  --font-size-xl: clamp(2.5rem, 8vw, 5.5rem);
+  --font-size-xxl: clamp(2.75rem, 10vw, 8.5rem);
 }
 
 *,
@@ -43,7 +43,7 @@ body {
 
 .container {
   width: 90vw;
-  max-width: 140rem;
+  max-width: 192rem;
   margin: 0 auto;
 }
 
@@ -71,6 +71,10 @@ body {
   font-weight: 400;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
 .mt-3 {
   margin-top: 3rem;
 }
@@ -82,4 +86,11 @@ body {
 ::selection {
   color: var(--clr-white);
   background-color: var(--clr-primary);
+}
+
+@keyframes up-and-down {
+  to {
+    opacity: 0.2;
+    transform: translateY(-20px);
+  }
 }

@@ -1,4 +1,5 @@
 import { slugify } from "@/utils/slugify";
+const SIZE = 9;
 
 export const getCategories = async () => {
   const res = await fetch("https://fakestoreapi.com/products/categories");
@@ -16,12 +17,25 @@ export const getCategories = async () => {
   return await categories;
 };
 
-export const getProducts = async () => {
-  const res = await fetch("https://fakestoreapi.com/products?limit=5");
-  const products = [...(await res.json())];
-  products.forEach((p) => {
-    p.quantity = 1;
-    p.amount = p.price;
-  });
-  return await res.json();
+export const getProducts = async (page = 1) => {
+  const limit = SIZE * page;
+
+  const res = await fetch(`https://fakestoreapi.com/products?limit=${limit}`);
+  const products = await res.json();
+  return products;
+};
+
+export const getProductsByCategory = async (page = 1, category) => {
+  const limit = SIZE * page;
+  const res = await fetch(
+    `https://fakestoreapi.com/products/category/${category}?limit=${limit}`
+  );
+  const products = await res.json();
+  return products;
+};
+
+export const getProduct = async (id) => {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const product = await res.json();
+  return product;
 };

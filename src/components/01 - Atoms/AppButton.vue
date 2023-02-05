@@ -5,6 +5,7 @@
     class="btn"
     :to="props.to"
     :class="[`btn--${props.theme}`]"
+    @click="emit('handleClick')"
   >
     <slot />
     <slot name="icon" />
@@ -12,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+const emit = defineEmits(["handleClick"]);
 
 const props = defineProps({
   tag: {
@@ -30,7 +31,7 @@ const props = defineProps({
     type: String,
     default: "primary",
     validator: (val) => {
-      return ["primary", "secondary"].includes(val);
+      return ["primary", "secondary", "link"].includes(val);
     },
   },
   type: {
@@ -38,8 +39,7 @@ const props = defineProps({
     default: "button",
   },
   to: {
-    type: String,
-    default: "/",
+    type: Object,
   },
 });
 </script>
@@ -73,6 +73,16 @@ const props = defineProps({
     &:hover {
       color: var(--clr-white);
       background-color: var(--clr-primary);
+    }
+  }
+
+  &--link {
+    text-decoration: none;
+    color: var(--clr-dark);
+    padding: 0;
+
+    &.router-link-exact-active {
+      color: var(--clr-primary);
     }
   }
 }

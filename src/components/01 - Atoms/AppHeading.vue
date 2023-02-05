@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
   tag: {
     type: String,
@@ -34,12 +32,15 @@ const props = defineProps({
   &--primary {
     font-size: var(--font-size-xxl);
   }
+
   &--secondary {
     font-size: var(--font-size-xl);
   }
+
   &--tertiary {
     font-size: var(--font-size-l);
   }
+
   &--quaternary {
     font-size: var(--font-size-md);
   }

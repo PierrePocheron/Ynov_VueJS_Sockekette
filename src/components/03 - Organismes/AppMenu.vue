@@ -1,17 +1,21 @@
 <template>
   <nav class="nav container" :class="{ opened: isOpen }">
     <div class="nav__brand">
-      <AppRouterLink to="/">
+      <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
         <template #default>
-          <AppLogo />
+          <AppLogo>
+            <AppHeading tag="h1" level="tertiary" class="clr--primary">
+              Sokekette
+            </AppHeading>
+          </AppLogo>
         </template>
-      </AppRouterLink>
+      </AppButton>
     </div>
     <ul class="nav__list">
       <li class="nav__item">
-        <AppRouterLink to="/products">
+        <AppButton tag="router-link" :to="{ name: 'products' }" theme="link">
           <template #default>Tous les produits</template>
-        </AppRouterLink>
+        </AppButton>
       </li>
       <li class="nav__item" v-if="categories.length > 0">
         <span class="nav__title">Categories</span>
@@ -21,18 +25,25 @@
             v-for="category in categories"
             :key="category.slug"
           >
-            <AppRouterLink :to="`/products/categories/${category.slug}`">
+            <AppButton
+              tag="router-link"
+              theme="link"
+              :to="{
+                name: 'products-category',
+                params: { category: category.label },
+              }"
+            >
               <template #default>
                 {{ category.label }}
               </template>
-            </AppRouterLink>
+            </AppButton>
           </li>
         </ul>
       </li>
       <li class="nav__item">
-        <AppRouterLink to="/cart">
+        <AppButton tag="router-link" :to="{ name: 'cart' }" theme="link">
           <template #default>Mon panier</template>
-        </AppRouterLink>
+        </AppButton>
       </li>
     </ul>
     <AppBurger @handleMenu="toggleMenu" />
@@ -42,9 +53,10 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { getCategories } from "@/services/AppProductService.js";
-import AppRouterLink from "@/components/01 - Atoms/AppRouterLink.vue";
 import AppLogo from "@/components/01 - Atoms/AppLogo.vue";
 import AppBurger from "@/components/01 - Atoms/AppBurger.vue";
+import AppHeading from "../01 - Atoms/AppHeading.vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
 
 const categories = ref([]);
 const isOpen = ref(false);
@@ -63,7 +75,9 @@ const toggleMenu = () => {
   padding: 2rem 0;
   display: flex;
   align-items: center;
-  position: relative;
+  position: sticky;
+  z-index: 99999;
+  top: 0;
 
   &.opened {
     .nav__list {
@@ -82,7 +96,9 @@ const toggleMenu = () => {
   }
 
   &__title {
-    color: var(--clr-dark-grey);
+    color: var(--clr-dark);
+    display: flex;
+    align-items: center;
     text-decoration: none;
     font-size: var(--font-size-s);
     font-family: var(--font-family-primary);
@@ -104,6 +120,7 @@ const toggleMenu = () => {
     transform: scaleY(0);
     transform-origin: top;
     transition: all 0.25s ease-in;
+    z-index: 9999;
 
     @media (min-width: 768px) {
       position: unset;

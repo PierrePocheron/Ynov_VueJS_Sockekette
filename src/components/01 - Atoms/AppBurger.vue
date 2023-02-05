@@ -21,7 +21,8 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
+
 const active = ref(false);
 const emit = defineEmits(["handleMenu"]);
 

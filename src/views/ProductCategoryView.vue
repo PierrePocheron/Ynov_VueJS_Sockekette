@@ -5,18 +5,20 @@
       :filters="sortingAvailable"
       @handleFilters="sortProductsList"
     />
-    <AppProductsGrid :products="products" />
+    <AppProductsGridVue :products="products" />
   </div>
 </template>
-
 <script setup>
-import { reactive, ref, onBeforeMount } from "vue";
-import AppLoading from "@/components/01 - Atoms/AppLoading.vue";
-import AppProductFilter from "@/components/02 - Molecules/AppProductFilter.vue";
-import { getProducts } from "@/services/AppProductService";
-import AppProductsGrid from "../components/03 - Organismes/AppProductsGrid.vue";
+import { onBeforeMount, ref, watch, reactive } from "vue";
+import { useRoute } from "vue-router";
+import { getProductsByCategory } from "../services/AppProductService";
+import AppLoading from "../components/01 - Atoms/AppLoading.vue";
+import AppProductFilter from "../components/02 - Molecules/AppProductFilter.vue";
+import AppProductsGridVue from "../components/03 - Organismes/AppProductsGrid.vue";
+
+const route = useRoute();
+const isLoading = ref(false);
 const products = ref([]);
-const isLoading = ref(true);
 const sortingAvailable = reactive([
   {
     label: "Ordre alphabétique",
@@ -44,16 +46,16 @@ const sortingAvailable = reactive([
   },
 ]);
 
-onBeforeMount(() => {
-  searchProducts();
-});
+onBeforeMount(loadProductsByCategory);
 
-const searchProducts = async () => {
+async function loadProductsByCategory() {
   isLoading.value = true;
-  const res = await getProducts();
-  products.value = sortProductsBy(res, "rate");
+  const categoryParams = route.params.category;
+  products.value = await getProductsByCategory(null, categoryParams);
   isLoading.value = false;
-};
+}
+
+watch(route, () => loadProductsByCategory());
 
 function sortProductsList(filter) {
   const productsToSort = [...products.value];
@@ -80,7 +82,6 @@ function sortProductsBy(products, filterBy = "name", sort = "desc") {
   return productsToSort;
 }
 </script>
-
 <style lang="scss" scoped>
 .products {
   display: flex;

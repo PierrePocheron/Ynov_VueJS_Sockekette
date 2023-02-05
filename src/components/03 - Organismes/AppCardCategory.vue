@@ -16,7 +16,15 @@
         v-for="category in categories"
         :key="category.id"
       >
-        <router-link to="/">
+        <AppButton
+          :to="{
+            name: 'products-category',
+            params: { category: category.label },
+          }"
+          tag="router-link"
+          theme="link"
+          class="categories__link"
+        >
           <div class="categories__info">
             <AppHeading tag="h4" level="secondary" class="clr--white">
               {{ category.label }}
@@ -25,7 +33,7 @@
           <div class="categories__img">
             <img :src="category.image" :alt="category.label" />
           </div>
-        </router-link>
+        </AppButton>
       </div>
     </div>
   </div>
@@ -36,6 +44,8 @@ import { onBeforeMount, ref } from "vue";
 import { getCategories } from "../../services/AppProductService";
 import AppHeading from "@/components/01 - Atoms/AppHeading.vue";
 import AppParagraph from "@/components/01 - Atoms/AppParagraph.vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
+
 const categories = ref([]);
 
 onBeforeMount(async () => {
@@ -58,29 +68,30 @@ onBeforeMount(async () => {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-template-columns: 1fr;
     gap: 3rem;
     width: 70%;
     margin: 6rem auto 0 auto;
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__item {
     position: relative;
     height: 50rem;
-
-    a {
-      padding: 5rem;
-      text-decoration: none;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     &:hover {
       background-color: var(--clr-secondary-50);
     }
+  }
+
+  &__link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__info {

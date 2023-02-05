@@ -14,49 +14,87 @@
           consequatur inventore nobis vel est!
         </AppParagraph>
       </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <router-link to="/">{{ category.label }}</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <router-link to="/">{{ category.label }}</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <router-link to="/">{{ category.label }}</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <router-link to="/">{{ category.label }}</router-link>
-          </li>
-        </ul>
+      <div class="footer__menu">
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </footer>
@@ -68,6 +106,7 @@ import AppParagraph from "@/components/01 - Atoms/AppParagraph.vue";
 import { onBeforeMount, ref } from "vue";
 import { getCategories } from "../../services/AppProductService";
 import AppHeading from "../01 - Atoms/AppHeading.vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
 
 const categories = ref([]);
 
@@ -84,8 +123,7 @@ onBeforeMount(async () => {
   .container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    justify-content: space-between;
+    gap: 5rem;
 
     @media (min-width: 992px) {
       flex-direction: row;
@@ -100,19 +138,20 @@ onBeforeMount(async () => {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: end;
     row-gap: 1rem;
+  }
+
+  &__menu {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__item {
     font-size: var(--font-size-s);
-    a {
-      text-decoration: none;
-      color: var(--clr-dark);
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 }
 </style>
