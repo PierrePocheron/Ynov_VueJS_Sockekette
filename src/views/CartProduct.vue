@@ -1,20 +1,11 @@
 <script setup>
-import { onMounted } from "vue";
 import { useCartStore } from "@/stores/cart";
 import CartItemQuantity from "@/components/02 - Molecules/CartItemQuantity.vue";
 import { formatNumberToPrice } from "@/utils/formatNumber";
 import { useRouter } from "vue-router";
-import { getProducts } from "../services/AppProductService";
 
 const cartStore = useCartStore();
 const router = useRouter();
-
-onMounted(loadProducts);
-
-async function loadProducts() {
-  const products = await getProducts();
-  cartStore.loadProductsInStore(products);
-}
 
 function paymentProcess() {
   cartStore.resetCartStore();
@@ -40,7 +31,10 @@ function paymentProcess() {
     <button @click="paymentProcess">Payer</button>
   </template>
   <template v-else>
-    <h1>Vous n'avez pas encore de produit dans votre panier, radin!!!!!</h1>
+    <h1>Votre panier est vide.</h1>
+    <router-link :to="{ name: 'products' }"
+      >Commencez votre shopping !</router-link
+    >
   </template>
 </template>
 
