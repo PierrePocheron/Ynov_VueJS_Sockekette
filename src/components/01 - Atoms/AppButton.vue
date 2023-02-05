@@ -5,6 +5,7 @@
     class="btn"
     :to="props.to"
     :class="[`btn--${props.theme}`]"
+    @click="emit('handleClick')"
   >
     <slot />
     <slot name="icon" />
@@ -12,7 +13,9 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
+
+const emit = defineEmits(["handleClick"]);
 
 const props = defineProps({
   tag: {
@@ -38,8 +41,7 @@ const props = defineProps({
     default: "button",
   },
   to: {
-    type: String,
-    default: "/",
+    type: Object,
   },
 });
 </script>

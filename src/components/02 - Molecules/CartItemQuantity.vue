@@ -1,6 +1,22 @@
+<template>
+  <div class="qty" v-if="itemQuantity > 0">
+    <button @click="addToCart(-1)" class="qty__btn">-</button>
+    <span class="qty__info">{{ itemQuantity }}</span>
+    <button @click="addToCart(1)" class="qty__btn">+</button>
+  </div>
+
+  <AppButton v-else @handleClick="addToCart(1)">
+    <template #icon>
+      <IconAddToCart />
+    </template>
+  </AppButton>
+</template>
+
 <script setup>
 import { useCartStore } from "@/stores/cart";
 import { computed } from "vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
+import IconAddToCart from "../icons/IconAddToCart.vue";
 
 const cartStore = useCartStore();
 
@@ -32,12 +48,25 @@ function addToCart(number) {
 }
 </script>
 
-<template>
-  <span v-if="itemQuantity > 0">
-    <span @click="addToCart(-1)">-</span>
-    <span>{{ itemQuantity }}</span>
-    <span @click="addToCart(1)">+</span>
-  </span>
+<style lang="scss" scoped>
+.qty {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: var(--clr-primary);
+  padding: 0.5rem;
 
-  <button v-else @click="addToCart(1)">Ajouter au panier</button>
-</template>
+  &__info {
+    font-size: var(--font-size-xs);
+    color: var(--clr-white);
+  }
+
+  &__btn {
+    display: block;
+    all: unset;
+    border: 1px solid var(--clr-white);
+    color: var(--clr-white);
+    padding: 0.5rem;
+  }
+}
+</style>

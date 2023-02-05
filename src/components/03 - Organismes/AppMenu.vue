@@ -104,6 +104,7 @@ const toggleMenu = () => {
     transform: scaleY(0);
     transform-origin: top;
     transition: all 0.25s ease-in;
+    z-index: 9999;
 
     @media (min-width: 768px) {
       position: unset;

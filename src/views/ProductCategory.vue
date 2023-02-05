@@ -1,62 +1,95 @@
+<template>
+  <AppLoading v-if="isLoading" />
+  <div v-else class="products container">
+    <AppProductFilter
+      :filters="sortingAvailable"
+      @handleFilters="sortProductsList"
+    />
+    <AppProductsGridVue :products="products" />
+  </div>
+</template>
 <script setup>
-import CartItemQuantity from "@/components//02 - Molecules/CartItemQuantity.vue";
-import { onMounted, ref, watch } from "vue";
+import { onBeforeMount, ref, watch, reactive } from "vue";
 import { useRoute } from "vue-router";
-import { slugify } from "@/utils/slugify";
-import { formatNumberToPrice } from "@/utils/formatNumber";
-
-const categories = [
-  { label: "electronics", slug: "electronics" },
-  { label: "jewelery", slug: "jewelery" },
-  { label: "men's clothing", slug: slugify("men's clothing") },
-  { label: "women's clothing", slug: slugify("women's clothing") },
-];
+import { getProductsByCategory } from "../services/AppProductService";
+import AppLoading from "../components/01 - Atoms/AppLoading.vue";
+import AppProductFilter from "../components/02 - Molecules/AppProductFilter.vue";
+import AppProductsGridVue from "../components/03 - Organismes/AppProductsGrid.vue";
 
 const route = useRoute();
-const isValidCategory = ref(false);
-const currentCategory = ref(null);
+const isLoading = ref(false);
 const products = ref([]);
+const sortingAvailable = reactive([
+  {
+    label: "Ordre alphabétique",
+    filterBy: "name",
+    sort: "asc",
+    checked: false,
+  },
+  {
+    label: "Ordre alphabétique inversé",
+    filterBy: "name",
+    sort: "desc",
+    checked: false,
+  },
+  {
+    label: "Note décroissante",
+    filterBy: "rate",
+    sort: "desc",
+    checked: true,
+  },
+  {
+    label: "Note croissante",
+    filterBy: "rate",
+    sort: "asc",
+    checked: false,
+  },
+]);
 
-onMounted(loadProductsByCategory);
+onBeforeMount(loadProductsByCategory);
 
 async function loadProductsByCategory() {
+  isLoading.value = true;
   const categoryParams = route.params.category;
-  const category = categories.find((c) => c.slug === categoryParams);
-
-  if (!category) {
-    isValidCategory.value = false;
-  } else {
-    isValidCategory.value = true;
-    currentCategory.value = category;
-    const res = await fetch(
-      "https://fakestoreapi.com/products/category/" + category.label
-    );
-    const json = await res.json();
-    products.value = [...json];
-  }
+  products.value = await getProductsByCategory(null, categoryParams);
+  isLoading.value = false;
 }
 
 watch(route, () => loadProductsByCategory());
+
+function sortProductsList(filter) {
+  const productsToSort = [...products.value];
+  products.value = sortProductsBy(productsToSort, filter.filterBy, filter.sort);
+}
+
+function sortProductsBy(products, filterBy = "name", sort = "desc") {
+  const productsToSort = [...products];
+  productsToSort.sort(function (a, b) {
+    let rateA = a.title;
+    let rateB = b.title;
+
+    if (filterBy === "rate") {
+      rateA = a.rating.rate;
+      rateB = b.rating.rate;
+    }
+
+    if (sort === "asc") {
+      return rateA < rateB ? -1 : rateA > rateB ? 1 : 0;
+    }
+    return rateA < rateB ? 1 : rateA > rateB ? -1 : 0;
+  });
+
+  return productsToSort;
+}
 </script>
+<style lang="scss" scoped>
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 
-<template>
-  <template v-if="isValidCategory">
-    <h1>Liste des produits de la catégorie : {{ currentCategory.label }}</h1>
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        <img :src="product.image" alt="image du produit" />
-        <span>{{ product.title }}</span>
-        <span>{{ formatNumberToPrice(product.price) }}</span>
-        <CartItemQuantity :item="product" />
-      </li>
-    </ul>
-  </template>
-  <h1 v-else>Cette catégorie n'existe pas !</h1>
-</template>
-
-<style scoped>
-li img {
-  width: 100px;
-  height: auto;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 </style>

@@ -1,39 +1,22 @@
 <template>
-  <div>
-    <h1>Products</h1>
-    <div v-if="isLoading">Loading ...</div>
-    <div v-else class="productList">
-      <fieldset>
-        <legend>Trier la liste des produits :</legend>
-
-        <div v-for="(sort, i) in sortingAvailable" :key="i">
-          <input
-            type="radio"
-            :id="sort.label"
-            name="sortBy"
-            :value="sort"
-            v-model="sortingSelected"
-            :checked="sort.checked"
-            @change="sortProductsList"
-          />
-          <label :for="sort.label">{{ sort.label }}</label>
-        </div>
-      </fieldset>
-      <ProductItem
-        v-for="product in products"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
+  <AppLoading v-if="isLoading" />
+  <div v-else class="products container">
+    <AppProductFilter
+      :filters="sortingAvailable"
+      @handleFilters="sortProductsList"
+    />
+    <AppProductsGrid :products="products" />
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import ProductItem from "@/components/03 - Organismes/ProductItem.vue";
-
+import { reactive, ref, onBeforeMount } from "vue";
+import AppLoading from "@/components/01 - Atoms/AppLoading.vue";
+import AppProductFilter from "@/components/02 - Molecules/AppProductFilter.vue";
+import { getProducts } from "@/services/AppProductService";
+import AppProductsGrid from "../components/03 - Organismes/AppProductsGrid.vue";
 const products = ref([]);
-const isLoading = ref(false);
+const isLoading = ref(true);
 const sortingAvailable = reactive([
   {
     label: "Ordre alphabétique",
@@ -60,28 +43,21 @@ const sortingAvailable = reactive([
     checked: false,
   },
 ]);
-const sortingSelected = ref(null);
+
+onBeforeMount(() => {
+  searchProducts();
+});
 
 const searchProducts = async () => {
   isLoading.value = true;
-  try {
-    const res = await fetch("https://fakestoreapi.com/products?limit=10");
-    const json = await res.json();
-    // tri des produits par note la plus haute par défaut
-    products.value = sortProductsBy(json, "rate");
-  } catch {
-    alert("An error occured!");
-  }
+  const res = await getProducts();
+  products.value = sortProductsBy(res, "rate");
   isLoading.value = false;
 };
 
-function sortProductsList() {
+function sortProductsList(filter) {
   const productsToSort = [...products.value];
-  products.value = sortProductsBy(
-    productsToSort,
-    sortingSelected.value.filterBy,
-    sortingSelected.value.sort
-  );
+  products.value = sortProductsBy(productsToSort, filter.filterBy, filter.sort);
 }
 
 function sortProductsBy(products, filterBy = "name", sort = "desc") {
@@ -103,6 +79,16 @@ function sortProductsBy(products, filterBy = "name", sort = "desc") {
 
   return productsToSort;
 }
-
-searchProducts();
 </script>
+
+<style lang="scss" scoped>
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+</style>

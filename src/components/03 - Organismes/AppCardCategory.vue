@@ -58,10 +58,14 @@ onBeforeMount(async () => {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-template-columns: 1fr;
     gap: 3rem;
     width: 70%;
     margin: 6rem auto 0 auto;
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__item {
@@ -69,13 +73,16 @@ onBeforeMount(async () => {
     height: 50rem;
 
     a {
-      padding: 5rem;
       text-decoration: none;
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @media (min-width: 768px) {
+        padding: 5rem;
+      }
     }
 
     &:hover {
