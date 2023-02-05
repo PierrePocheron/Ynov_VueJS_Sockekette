@@ -109,6 +109,8 @@ onBeforeMount(async () => {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: end;
     row-gap: 1rem;
   }
 

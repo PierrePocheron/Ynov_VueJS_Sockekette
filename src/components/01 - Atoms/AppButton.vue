@@ -80,6 +80,10 @@ const props = defineProps({
     text-decoration: none;
     color: var(--clr-dark);
     padding: 0;
+
+    &.router-link-exact-active {
+      color: var(--clr-primary);
+    }
   }
 }
 </style>

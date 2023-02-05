@@ -17,7 +17,10 @@
         :key="category.id"
       >
         <AppButton
-          :to="{ name: 'home' }"
+          :to="{
+            name: 'products-category',
+            params: { category: category.label },
+          }"
           tag="router-link"
           theme="link"
           class="categories__link"
@@ -78,7 +81,6 @@ onBeforeMount(async () => {
   &__item {
     position: relative;
     height: 50rem;
-    padding: 5rem;
     &:hover {
       background-color: var(--clr-secondary-50);
     }
