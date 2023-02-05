@@ -12,12 +12,10 @@
     <div class="product__info">
       <AppHeading tag="h4" level="quaternary">{{ product.title }}</AppHeading>
       <div class="product__detail">
-        <AppParagraph level="secondary"
-          >price : {{ formatNumberToPrice(product.price) }}</AppParagraph
-        >
-        <AppParagraph level="secondary"
-          >rating rate: {{ product.rating.rate }}</AppParagraph
-        >
+        <AppStarRating :value="Math.floor(product.rating.rate)" />
+        <AppParagraph level="secondary">
+          {{ formatNumberToPrice(product.price) }}
+        </AppParagraph>
       </div>
 
       <div class="product__actions">
@@ -43,6 +41,7 @@ import IconProduct from "@/components/icons/IconProduct.vue";
 import AppParagraph from "@/components/01 - Atoms/AppParagraph.vue";
 import AppHeading from "@/components/01 - Atoms/AppHeading.vue";
 import AppButton from "@/components/01 - Atoms/AppButton.vue";
+import AppStarRating from "../01 - Atoms/AppStarRating.vue";
 import { formatNumberToPrice } from "@/utils/formatNumber";
 
 const props = defineProps({
