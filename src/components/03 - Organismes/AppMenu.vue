@@ -30,7 +30,7 @@
               theme="link"
               :to="{
                 name: 'products-category',
-                params: { category: category.slug },
+                params: { category: category.label },
               }"
             >
               <template #default>

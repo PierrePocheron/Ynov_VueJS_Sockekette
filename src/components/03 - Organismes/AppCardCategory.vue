@@ -16,7 +16,12 @@
         v-for="category in categories"
         :key="category.id"
       >
-        <router-link to="/">
+        <AppButton
+          :to="{ name: 'home' }"
+          tag="router-link"
+          theme="link"
+          class="categories__link"
+        >
           <div class="categories__info">
             <AppHeading tag="h4" level="secondary" class="clr--white">
               {{ category.label }}
@@ -25,7 +30,7 @@
           <div class="categories__img">
             <img :src="category.image" :alt="category.label" />
           </div>
-        </router-link>
+        </AppButton>
       </div>
     </div>
   </div>
@@ -36,6 +41,8 @@ import { onBeforeMount, ref } from "vue";
 import { getCategories } from "../../services/AppProductService";
 import AppHeading from "@/components/01 - Atoms/AppHeading.vue";
 import AppParagraph from "@/components/01 - Atoms/AppParagraph.vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
+
 const categories = ref([]);
 
 onBeforeMount(async () => {
@@ -71,23 +78,18 @@ onBeforeMount(async () => {
   &__item {
     position: relative;
     height: 50rem;
-
-    a {
-      text-decoration: none;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      @media (min-width: 768px) {
-        padding: 5rem;
-      }
-    }
-
+    padding: 5rem;
     &:hover {
       background-color: var(--clr-secondary-50);
     }
+  }
+
+  &__link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__info {

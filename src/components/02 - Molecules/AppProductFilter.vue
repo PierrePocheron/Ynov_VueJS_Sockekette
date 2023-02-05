@@ -37,7 +37,7 @@ const props = defineProps({
   padding: 2rem;
   position: sticky;
   z-index: 9999;
-  top: 3rem;
+  top: 15rem;
 
   @media (min-width: 768px) {
     max-width: 25rem;
@@ -49,7 +49,7 @@ const props = defineProps({
     flex-wrap: wrap;
     gap: 1rem;
     position: sticky;
-    top: 3rem;
+    top: 15rem;
 
     @media (min-width: 768px) {
       flex-direction: column;
