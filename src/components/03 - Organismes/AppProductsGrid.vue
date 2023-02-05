@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import AppProductCart from "@/components/02 - Molecules/AppProductCart.vue";
 
 const props = defineProps({

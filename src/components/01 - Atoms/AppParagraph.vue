@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
   level: {
     type: String,
@@ -23,9 +21,11 @@ const props = defineProps({
   &--primary {
     font-size: var(--font-size-md);
   }
+
   &--secondary {
     font-size: var(--font-size-s);
   }
+
   &--tertiary {
     font-size: var(--font-size-xs);
   }

@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import IconStar from "../icons/IconStar.vue";
 
 const props = defineProps({
