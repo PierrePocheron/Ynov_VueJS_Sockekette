@@ -105,6 +105,7 @@ const product = computed(() => props.product);
     align-self: flex-end;
     margin-top: auto;
     padding-right: 2rem;
+    padding-bottom: 2rem;
   }
 }
 </style>
