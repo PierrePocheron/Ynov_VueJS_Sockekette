@@ -23,7 +23,7 @@
           theme="primary"
           tag="router-link"
           :to="{
-            name: 'products-detail',
+            name: 'product-detail',
             params: { id: product.id },
           }"
         >

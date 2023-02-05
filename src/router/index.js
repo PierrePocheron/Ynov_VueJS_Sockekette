@@ -6,23 +6,23 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Home",
+      name: "home",
       component: HomeView,
     },
     {
       path: "/cart",
       name: "cart",
-      component: () => import("@/views/CartProduct.vue"),
+      component: () => import("@/views/CartProductView.vue"),
     },
     {
       path: "/payment",
       name: "payment",
-      component: () => import("@/views/AppPayment.vue"),
+      component: () => import("@/views/AppPaymentView.vue"),
     },
     {
       path: "/products/categories/:category",
       name: "products-category",
-      component: () => import("@/views/ProductCategory.vue"),
+      component: () => import("@/views/ProductCategoryView.vue"),
     },
     {
       path: "/products",
@@ -30,8 +30,8 @@ const router = createRouter({
       component: () => import("@/views/ProductListView.vue"),
     },
     {
-      path: "/products/:id",
-      name: "products-detail",
+      path: "/product/:id",
+      name: "product-detail",
       component: () => import("@/views/ProductDetailView.vue"),
     },
   ],

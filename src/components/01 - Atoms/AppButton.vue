@@ -33,7 +33,7 @@ const props = defineProps({
     type: String,
     default: "primary",
     validator: (val) => {
-      return ["primary", "secondary"].includes(val);
+      return ["primary", "secondary", "link"].includes(val);
     },
   },
   type: {
@@ -76,6 +76,12 @@ const props = defineProps({
       color: var(--clr-white);
       background-color: var(--clr-primary);
     }
+  }
+
+  &--link {
+    text-decoration: none;
+    color: var(--clr-dark);
+    padding: 0;
   }
 }
 </style>

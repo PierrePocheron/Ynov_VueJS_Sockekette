@@ -21,7 +21,9 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.label }}</router-link>
+            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              {{ category.label }}
+            </AppButton>
           </li>
         </ul>
       </div>
@@ -32,7 +34,9 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.label }}</router-link>
+            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              {{ category.label }}
+            </AppButton>
           </li>
         </ul>
       </div>
@@ -43,7 +47,9 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.label }}</router-link>
+            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              {{ category.label }}
+            </AppButton>
           </li>
         </ul>
       </div>
@@ -54,7 +60,9 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <router-link to="/">{{ category.label }}</router-link>
+            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              {{ category.label }}
+            </AppButton>
           </li>
         </ul>
       </div>
@@ -68,6 +76,7 @@ import AppParagraph from "@/components/01 - Atoms/AppParagraph.vue";
 import { onBeforeMount, ref } from "vue";
 import { getCategories } from "../../services/AppProductService";
 import AppHeading from "../01 - Atoms/AppHeading.vue";
+import AppButton from "../01 - Atoms/AppButton.vue";
 
 const categories = ref([]);
 
@@ -105,14 +114,6 @@ onBeforeMount(async () => {
 
   &__item {
     font-size: var(--font-size-s);
-    a {
-      text-decoration: none;
-      color: var(--clr-dark);
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 }
 </style>
