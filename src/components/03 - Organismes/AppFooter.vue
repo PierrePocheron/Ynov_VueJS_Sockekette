@@ -14,57 +14,59 @@
           consequatur inventore nobis vel est!
         </AppParagraph>
       </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
-              {{ category.label }}
-            </AppButton>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
-              {{ category.label }}
-            </AppButton>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
-              {{ category.label }}
-            </AppButton>
-          </li>
-        </ul>
-      </div>
-      <div class="footer__categories">
-        <ul class="footer__list">
-          <li
-            class="footer__item"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
-              {{ category.label }}
-            </AppButton>
-          </li>
-        </ul>
+      <div class="footer__menu">
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__categories">
+          <ul class="footer__list">
+            <li
+              class="footer__item"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+                {{ category.label }}
+              </AppButton>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </footer>
@@ -93,8 +95,7 @@ onBeforeMount(async () => {
   .container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    justify-content: space-between;
+    gap: 5rem;
 
     @media (min-width: 992px) {
       flex-direction: row;
@@ -112,6 +113,13 @@ onBeforeMount(async () => {
     height: 100%;
     justify-content: end;
     row-gap: 1rem;
+  }
+
+  &__menu {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__item {
