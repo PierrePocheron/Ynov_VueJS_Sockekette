@@ -33,3 +33,9 @@ export const getProductsByCategory = async (page = 1, category) => {
   const products = await res.json();
   return products;
 };
+
+export const getProduct = async (id) => {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const product = await res.json();
+  return product;
+};

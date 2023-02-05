@@ -3,7 +3,11 @@
     <div class="nav__brand">
       <AppRouterLink to="/">
         <template #default>
-          <AppLogo />
+          <AppLogo>
+            <AppHeading tag="h1" level="tertiary" class="clr--primary">
+              Sokekette
+            </AppHeading>
+          </AppLogo>
         </template>
       </AppRouterLink>
     </div>
@@ -45,6 +49,7 @@ import { getCategories } from "@/services/AppProductService.js";
 import AppRouterLink from "@/components/01 - Atoms/AppRouterLink.vue";
 import AppLogo from "@/components/01 - Atoms/AppLogo.vue";
 import AppBurger from "@/components/01 - Atoms/AppBurger.vue";
+import AppHeading from "../01 - Atoms/AppHeading.vue";
 
 const categories = ref([]);
 const isOpen = ref(false);
@@ -63,7 +68,8 @@ const toggleMenu = () => {
   padding: 2rem 0;
   display: flex;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
 
   &.opened {
     .nav__list {
