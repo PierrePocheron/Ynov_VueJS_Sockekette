@@ -22,7 +22,14 @@
               v-for="category in categories"
               :key="category.id"
             >
-              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
                 {{ category.label }}
               </AppButton>
             </li>
@@ -35,7 +42,14 @@
               v-for="category in categories"
               :key="category.id"
             >
-              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
                 {{ category.label }}
               </AppButton>
             </li>
@@ -48,7 +62,14 @@
               v-for="category in categories"
               :key="category.id"
             >
-              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
                 {{ category.label }}
               </AppButton>
             </li>
@@ -61,7 +82,14 @@
               v-for="category in categories"
               :key="category.id"
             >
-              <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+              <AppButton
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+                tag="router-link"
+                theme="link"
+              >
                 {{ category.label }}
               </AppButton>
             </li>
