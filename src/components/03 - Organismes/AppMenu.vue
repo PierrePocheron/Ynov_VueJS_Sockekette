@@ -43,7 +43,9 @@
         </li>
         <li class="nav__item">
           <AppButton tag="router-link" :to="{ name: 'cart' }" theme="link">
-            <template #default>Mon panier</template>
+            <template #default
+              >Mon panier ({{ cartStore.cartItemsCount }})
+            </template>
           </AppButton>
         </li>
       </ul>
@@ -59,10 +61,12 @@ import AppLogo from "@/components/01 - Atoms/AppLogo.vue";
 import AppBurger from "@/components/01 - Atoms/AppBurger.vue";
 import AppHeading from "../01 - Atoms/AppHeading.vue";
 import AppButton from "../01 - Atoms/AppButton.vue";
+import { useCartStore } from "@/stores/cart";
 
 const categories = ref([]);
 const isOpen = ref(false);
 const topOfPage = ref(true);
+const cartStore = useCartStore();
 
 onBeforeMount(async () => {
   categories.value = await getCategories();
@@ -179,6 +183,7 @@ const toggleMenu = () => {
     @media (min-width: 768px) {
       &:hover {
         background-color: var(--clr-light-grey);
+
         .nav__list--submenu {
           opacity: 1;
           visibility: visible;
