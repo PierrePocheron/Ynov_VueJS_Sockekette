@@ -4,14 +4,15 @@
     <AppProductFilter
       :filters="sortingAvailable"
       @handleFilters="sortProductsList"
+      @handle-search="searchProduct"
     />
-    <AppProductsGridVue :products="products" />
+    <AppProductsGridVue :products="productsToDisplay" />
   </div>
 </template>
 <script setup>
-import { onBeforeMount, ref, watch, reactive } from "vue";
+import { onBeforeMount, ref, watch, reactive, computed } from "vue";
 import { useRoute } from "vue-router";
-import { getProductsByCategory } from "../services/AppProductService";
+import { getProductsByCategory } from "@/services/AppProductService";
 import AppLoading from "../components/01 - Atoms/AppLoading.vue";
 import AppProductFilter from "../components/02 - Molecules/AppProductFilter.vue";
 import AppProductsGridVue from "../components/03 - Organismes/AppProductsGrid.vue";
@@ -19,6 +20,8 @@ import AppProductsGridVue from "../components/03 - Organismes/AppProductsGrid.vu
 const route = useRoute();
 const isLoading = ref(false);
 const products = ref([]);
+const productsFiltered = ref([]);
+const isModeSearch = ref(false);
 const sortingAvailable = reactive([
   {
     label: "Ordre alphabétique",
@@ -48,6 +51,14 @@ const sortingAvailable = reactive([
 
 onBeforeMount(loadProductsByCategory);
 
+const productsToDisplay = computed(() => {
+  if (isModeSearch.value) {
+    return productsFiltered.value;
+  } else {
+    return products.value;
+  }
+});
+
 async function loadProductsByCategory() {
   isLoading.value = true;
   const categoryParams = route.params.category;
@@ -58,8 +69,28 @@ async function loadProductsByCategory() {
 watch(route, () => loadProductsByCategory());
 
 function sortProductsList(filter) {
-  const productsToSort = [...products.value];
-  products.value = sortProductsBy(productsToSort, filter.filterBy, filter.sort);
+  const productsToSort = [...productsToDisplay.value];
+  isModeSearch.value
+    ? (productsFiltered.value = sortProductsBy(
+        productsToSort,
+        filter.filterBy,
+        filter.sort
+      ))
+    : (products.value = sortProductsBy(
+        productsToSort,
+        filter.filterBy,
+        filter.sort
+      ));
+}
+
+function searchProduct(search) {
+  search.trim().length === 0
+    ? (isModeSearch.value = false)
+    : (isModeSearch.value = true);
+  productsFiltered.value = products.value.filter((product) =>
+    product.title.toLowerCase().startsWith(search.toLowerCase())
+  );
+  console.log(productsFiltered.value);
 }
 
 function sortProductsBy(products, filterBy = "name", sort = "desc") {
