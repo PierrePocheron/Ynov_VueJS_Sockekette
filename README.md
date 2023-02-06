@@ -7,6 +7,8 @@ The features are as follows: [features](#🧱-features)
 
 This project aims to validate our VueJS elective.
 
+#
+
 ## 🧑🏽‍💻 `Developpement Context`
 
 ### _Team :_
@@ -18,6 +20,10 @@ This project aims to validate our VueJS elective.
 ### _Project management :_
 
 - Github Project
+
+### _Project communication :_
+
+- Discord
 
 #
 
@@ -41,11 +47,13 @@ This project aims to validate our VueJS elective.
 ### 👕 `Module Product`
 
 - Display product informations
-- Add product to cart
+- Add / remove product from cart
+- Manage quantity of products in cart
 
 ### 🛒 `Module Cart`
 
 - Display product in cart
+- Validate the order
 
 #
 
