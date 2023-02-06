@@ -89,7 +89,6 @@ function searchProduct(search) {
   productsFiltered.value = products.value.filter((product) =>
     product.title.toLowerCase().startsWith(search.toLowerCase())
   );
-  console.log(productsFiltered.value);
 }
 
 function sortProductsBy(products, filterBy = "name", sort = "desc") {
