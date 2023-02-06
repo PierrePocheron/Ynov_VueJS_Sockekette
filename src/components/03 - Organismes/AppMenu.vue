@@ -1,57 +1,59 @@
 <template>
-  <nav class="nav container" :class="{ opened: isOpen }">
-    <div class="nav__brand">
-      <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
-        <template #default>
-          <AppLogo>
-            <AppHeading tag="h1" level="tertiary" class="clr--primary">
-              Sokekette
-            </AppHeading>
-          </AppLogo>
-        </template>
-      </AppButton>
-    </div>
-    <ul class="nav__list">
-      <li class="nav__item">
-        <AppButton tag="router-link" :to="{ name: 'products' }" theme="link">
-          <template #default>Tous les produits</template>
+  <nav class="nav" :class="{ opened: isOpen, onTop: topOfPage }">
+    <div class="container">
+      <div class="nav__brand">
+        <AppButton :to="{ name: 'home' }" tag="router-link" theme="link">
+          <template #default>
+            <AppLogo>
+              <AppHeading tag="h1" level="tertiary" class="clr--primary">
+                Sokekette
+              </AppHeading>
+            </AppLogo>
+          </template>
         </AppButton>
-      </li>
-      <li class="nav__item" v-if="categories.length > 0">
-        <span class="nav__title">Categories</span>
-        <ul class="nav__list nav__list--submenu">
-          <li
-            class="nav__item nav__item--subitem"
-            v-for="category in categories"
-            :key="category.slug"
-          >
-            <AppButton
-              tag="router-link"
-              theme="link"
-              :to="{
-                name: 'products-category',
-                params: { category: category.label },
-              }"
+      </div>
+      <ul class="nav__list">
+        <li class="nav__item">
+          <AppButton tag="router-link" :to="{ name: 'products' }" theme="link">
+            <template #default>Tous les produits</template>
+          </AppButton>
+        </li>
+        <li class="nav__item" v-if="categories.length > 0">
+          <span class="nav__title">Categories</span>
+          <ul class="nav__list nav__list--submenu">
+            <li
+              class="nav__item nav__item--subitem"
+              v-for="category in categories"
+              :key="category.slug"
             >
-              <template #default>
-                {{ category.label }}
-              </template>
-            </AppButton>
-          </li>
-        </ul>
-      </li>
-      <li class="nav__item">
-        <AppButton tag="router-link" :to="{ name: 'cart' }" theme="link">
-          <template #default>Mon panier</template>
-        </AppButton>
-      </li>
-    </ul>
-    <AppBurger @handleMenu="toggleMenu" />
+              <AppButton
+                tag="router-link"
+                theme="link"
+                :to="{
+                  name: 'products-category',
+                  params: { category: category.label },
+                }"
+              >
+                <template #default>
+                  {{ category.label }}
+                </template>
+              </AppButton>
+            </li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <AppButton tag="router-link" :to="{ name: 'cart' }" theme="link">
+            <template #default>Mon panier</template>
+          </AppButton>
+        </li>
+      </ul>
+      <AppBurger @handleMenu="toggleMenu" />
+    </div>
   </nav>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { getCategories } from "@/services/AppProductService.js";
 import AppLogo from "@/components/01 - Atoms/AppLogo.vue";
 import AppBurger from "@/components/01 - Atoms/AppBurger.vue";
@@ -60,10 +62,20 @@ import AppButton from "../01 - Atoms/AppButton.vue";
 
 const categories = ref([]);
 const isOpen = ref(false);
+const topOfPage = ref(true);
 
-onMounted(async () => {
+onBeforeMount(async () => {
   categories.value = await getCategories();
+  window.addEventListener("scroll", handleScroll);
 });
+
+const handleScroll = () => {
+  if (window.scrollY > 0 && topOfPage.value) {
+    topOfPage.value = false;
+  } else if (window.scrollY === 0 && !topOfPage.value) {
+    topOfPage.value = true;
+  }
+};
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -73,11 +85,15 @@ const toggleMenu = () => {
 <style lang="scss" scoped>
 .nav {
   padding: 2rem 0;
-  display: flex;
-  align-items: center;
   position: sticky;
   z-index: 99999;
   top: 0;
+  background-color: var(--clr-white);
+
+  &.onTop {
+    background-color: transparent;
+    transition: all 0.5 ease-in;
+  }
 
   &.opened {
     .nav__list {
@@ -93,6 +109,11 @@ const toggleMenu = () => {
         }
       }
     }
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
   }
 
   &__title {
