@@ -5,7 +5,7 @@
     <button @click="addToCart(1)" class="qty__btn">+</button>
   </div>
 
-  <AppButton v-else @handleClick="addToCart(1)" class="cart">
+  <AppButton v-else @handleClick="addToCart(1)">
     <template #icon>
       <IconAddToCart />
     </template>
@@ -71,8 +71,5 @@ function addToCart(number) {
   &__btn:hover {
     cursor: pointer;
   }
-}
-.cart:hover {
-  cursor: pointer;
 }
 </style>
