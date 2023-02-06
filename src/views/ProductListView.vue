@@ -4,18 +4,22 @@
     <AppProductFilter
       :filters="sortingAvailable"
       @handleFilters="sortProductsList"
+      @handle-search="searchProduct"
     />
-    <AppProductsGrid :products="products" />
+    <AppProductsGrid :products="productsToDisplay" />
   </div>
 </template>
 
 <script setup>
-import { reactive, ref, onBeforeMount } from "vue";
+import { reactive, ref, onBeforeMount, computed } from "vue";
 import AppLoading from "@/components/01 - Atoms/AppLoading.vue";
 import AppProductFilter from "@/components/02 - Molecules/AppProductFilter.vue";
 import { getProducts } from "@/services/AppProductService";
 import AppProductsGrid from "../components/03 - Organismes/AppProductsGrid.vue";
+
 const products = ref([]);
+const productsFiltered = ref([]);
+const isModeSearch = ref(false);
 const isLoading = ref(true);
 const sortingAvailable = reactive([
   {
@@ -45,10 +49,18 @@ const sortingAvailable = reactive([
 ]);
 
 onBeforeMount(() => {
-  searchProducts();
+  loadProducts();
 });
 
-const searchProducts = async () => {
+const productsToDisplay = computed(() => {
+  if (isModeSearch.value) {
+    return productsFiltered.value;
+  } else {
+    return products.value;
+  }
+});
+
+const loadProducts = async () => {
   isLoading.value = true;
   const res = await getProducts();
   products.value = sortProductsBy(res, "rate");
@@ -56,8 +68,27 @@ const searchProducts = async () => {
 };
 
 function sortProductsList(filter) {
-  const productsToSort = [...products.value];
-  products.value = sortProductsBy(productsToSort, filter.filterBy, filter.sort);
+  const productsToSort = [...productsToDisplay.value];
+  isModeSearch.value
+    ? (productsFiltered.value = sortProductsBy(
+        productsToSort,
+        filter.filterBy,
+        filter.sort
+      ))
+    : (products.value = sortProductsBy(
+        productsToSort,
+        filter.filterBy,
+        filter.sort
+      ));
+}
+
+function searchProduct(search) {
+  search.trim().length === 0
+    ? (isModeSearch.value = false)
+    : (isModeSearch.value = true);
+  productsFiltered.value = products.value.filter((product) =>
+    product.title.toLowerCase().startsWith(search.toLowerCase())
+  );
 }
 
 function sortProductsBy(products, filterBy = "name", sort = "desc") {

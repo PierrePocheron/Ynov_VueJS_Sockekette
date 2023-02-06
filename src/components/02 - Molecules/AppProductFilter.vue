@@ -15,12 +15,26 @@
           filter.label
         }}</label>
       </div>
+      <div>
+        <label for="search">Rechercher un produit</label>
+        <input
+          class="filters__item"
+          type="text"
+          name="search"
+          id="search"
+          placeholder="nom du produit"
+          v-model="inputSearch"
+          @keyup="emit('handleSearch', inputSearch)"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const emit = defineEmits(["handleFilters"]);
+import { ref } from "vue";
+
+const emit = defineEmits(["handleFilters", "handleSearch"]);
 
 const props = defineProps({
   filters: {
@@ -28,6 +42,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const inputSearch = ref(null);
 </script>
 
 <style lang="scss" scoped>

@@ -1,11 +1,12 @@
 <template>
-  <div class="grid">
+  <div class="grid" v-if="props.products.length > 0">
     <AppProductCart
       v-for="product in props.products"
       :key="product.id"
       :product="product"
     />
   </div>
+  <div v-else>Aucun produit ne correspond à votre recherche.</div>
 </template>
 
 <script setup>
