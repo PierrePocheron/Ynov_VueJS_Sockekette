@@ -15,7 +15,9 @@
         praesentium facilis eaque.
       </AppParagraph>
       <div class="hero__actions">
-        <AppButton tag="router-link" :to="{ name: 'home' }">Shop now</AppButton>
+        <AppButton tag="router-link" :to="{ name: 'products' }"
+          >Shop now</AppButton
+        >
       </div>
     </div>
     <div class="hero__illustrations">
