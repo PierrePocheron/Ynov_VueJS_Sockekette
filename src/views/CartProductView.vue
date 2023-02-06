@@ -4,7 +4,7 @@
       <div class="cart">
         <div class="cart__items">
           <AppHeading tag="h1" level="primary">
-            Panier
+            🧺 Panier
             <AppParagraph level="tertiary">
               nombre items: {{ cartStore.cartItemsCount }}
             </AppParagraph>
@@ -26,7 +26,9 @@
       </div>
     </template>
     <template v-else>
-      <AppHeading tag="h1" level="primary">Votre panier est vide.</AppHeading>
+      <AppHeading tag="h1" level="primary" class="title"
+        >🥲 Votre panier est vide.</AppHeading
+      >
       <AppButton @handleClick="router.back()">
         Commencez votre shopping !
       </AppButton>
@@ -54,6 +56,9 @@ function paymentProcess() {
 </script>
 
 <style scoped lang="scss">
+.title {
+  padding: 8% 0 8% 0;
+}
 .cart {
   display: flex;
   flex-direction: column;

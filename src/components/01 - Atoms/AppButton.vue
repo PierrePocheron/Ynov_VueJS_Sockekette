@@ -62,6 +62,7 @@ const props = defineProps({
       color: var(--clr-primary);
       background-color: transparent;
       border-color: var(--clr-primary);
+      cursor: pointer;
     }
   }
 

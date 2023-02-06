@@ -15,21 +15,23 @@
         praesentium facilis eaque.
       </AppParagraph>
       <div class="hero__actions">
-        <AppButton tag="router-link" :to="{ name: 'home' }">Shop now</AppButton>
+        <AppButton tag="router-link" :to="{ name: 'products' }"
+          >Shop now</AppButton
+        >
       </div>
     </div>
     <div class="hero__illustrations">
       <div class="hero__illustration hero__illustration--1">
-        <img src="/images/course1.jpeg" class="hero__img" />
+        <img src="/images/hero-image-3.jpeg" class="hero__img" />
       </div>
       <div class="hero__illustration hero__illustration--2">
-        <img src="/images/course1.jpeg" class="hero__img" />
+        <img src="/images/hero-image-1.jpeg" class="hero__img" />
       </div>
       <div class="hero__illustration hero__illustration--3">
-        <img src="/images/course1.jpeg" class="hero__img" />
+        <img src="/images/hero-image-2.jpeg" class="hero__img" />
       </div>
       <div class="hero__illustration hero__illustration--4">
-        <img src="/images/course1.jpeg" class="hero__img" />
+        <img src="/images/hero-image-4.jpeg" class="hero__img" />
       </div>
     </div>
   </div>

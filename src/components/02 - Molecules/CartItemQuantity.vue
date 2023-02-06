@@ -68,5 +68,8 @@ function addToCart(number) {
     color: var(--clr-white);
     padding: 0.5rem;
   }
+  &__btn:hover {
+    cursor: pointer;
+  }
 }
 </style>
