@@ -64,6 +64,7 @@ This project aims to validate our VueJS elective.
 - Vite
 - Vue Router
 - Pinia
+- Netlify
 - [Fake Store API](https://fakestoreapi.com/)
 
 #
