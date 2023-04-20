@@ -1,5 +1,5 @@
 # 🚀 Sockekette - Ynov VueJS Project Shopping
-
+[![Code quality ✨](https://github.com/PierrePocheron/Ynov_VueJS_Sockekette/actions/workflows/main-workflow.yml/badge.svg)](https://github.com/PierrePocheron/Ynov_VueJS_Sockekette/actions/workflows/main-workflow.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e5388c0b-d7bb-4275-a5b4-ca406cc6bb2f/deploy-status)](https://vuejs-project-shopping.netlify.app/)
 
 **_Sockekette_** is an e-commerce website.
